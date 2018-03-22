@@ -1,0 +1,694 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     21681,        685]
+NotebookOptionsPosition[     19743,        614]
+NotebookOutlinePosition[     20089,        629]
+CellTagsIndexPosition[     20046,        626]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Blefiranje", "Title",
+ CellChangeTimes->{{3.6658065202030125`*^9, 3.6658065297654867`*^9}}],
+
+Cell["\<\
+Dva igralca polo\[ZHacek]ita vlo\[ZHacek]ek a. Prvi igralec na skrivaj \
+pogleda karto in nato lahko stavi b. \[CapitalCHacek]e ne stavi drugi igralec \
+pobere vlo\[ZHacek]ek a. Po stavi prvega igralca drugi igralec nato lahko \
+polo\[ZHacek]i, stave ne sprejeme, ali pa kli\[CHacek]e, stavo sprejeme in \
+polo\[ZHacek]i b. \[CapitalCHacek]e drugi igralec stave ne sprejeme, prvi \
+igralec dobi za\[CHacek]etni vlo\[ZHacek]ek a, \[CHacek]e jo sprejeme, dobi \
+stavo b prvi igralec \[CHacek]e je pogledana karta \[CHacek]rna, \[CHacek]e \
+pa je rde\[CHacek]a, stavo b dobi drugi igralec. \
+\>", "Text",
+ CellChangeTimes->{{3.6658065585679407`*^9, 3.6658067064142027`*^9}, {
+  3.665806748148011*^9, 3.6658068434826756`*^9}, {3.6658068850764384`*^9, 
+  3.6658069760229754`*^9}, {3.6658070911877766`*^9, 3.665807139784356*^9}}],
+
+Cell["\<\
+Prvi igralec ima dve strategiji. Stavi samo, \[CHacek]e je videl \[CHacek]rno \
+karto ali pa vedno stavi, blefira. Drugi ima prav tako dve strategiji, polo\
+\[ZHacek]i ali stavi.\
+\>", "Text",
+ CellChangeTimes->{{3.665807020063373*^9, 3.665807069735227*^9}, {
+  3.6658071688648825`*^9, 3.6658072293815484`*^9}}],
+
+Cell["Pripadajo\[CHacek]a vrednostna matrika je", "Text",
+ CellChangeTimes->{{3.6658072315480995`*^9, 3.6658072479993615`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"m", " ", "=", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        FractionBox[
+         RowBox[{"b0", "-", "a0"}], "2"]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"a0", ",", "0"}], "}"}]}], "}"}]}], ")"}], "//", 
+  "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.665805285380432*^9, 3.665805334366109*^9}, {
+  3.6658054738402205`*^9, 3.665805491664833*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {"0", 
+      RowBox[{
+       FractionBox["1", "2"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "a0"}], "+", "b0"}], ")"}]}]},
+     {"a0", "0"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.6658053355263968`*^9, 3.665805495431817*^9, 
+  3.665807490833192*^9}]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"c", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"b", "=", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"u", " ", "=", 
+   RowBox[{"{", 
+    RowBox[{"u1", ",", "u2"}], "}"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.6658053584793663`*^9, 3.665805373248188*^9}, {
+  3.6658055744532423`*^9, 3.665805582701393*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{"e", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{"1", ",", 
+      RowBox[{"{", "2", "}"}], ",", 
+      RowBox[{"{", "2", "}"}]}], "]"}]}], ")"}], "//", 
+  "MatrixForm"}]], "Input",
+ CellChangeTimes->{{3.6658060613252454`*^9, 3.665806081205386*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {"1", "1"},
+     {"1", "1"}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.665806081812546*^9, 3.665807495237317*^9}]
+}, Open  ]],
+
+Cell["\<\
+Ker vrednostna matrika nima vseh elementov pozitivnih, moramo \
+pri\[SHacek]teti matriko enic.\
+\>", "Text",
+ CellChangeTimes->{{3.665807325560423*^9, 3.665807358208883*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Thread", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Transpose", "[", 
+     RowBox[{"m", "+", "e"}], "]"}], ".", "u"}], "\[GreaterEqual]", " ", 
+   "b"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Thread", "[", 
+  RowBox[{"u", "\[GreaterEqual]", " ", "0"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.665805680263625*^9, 3.6658056809198112`*^9}, {
+  3.6658060979207015`*^9, 3.6658060990200124`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"u1", "+", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", "a0"}], ")"}], " ", "u2"}]}], "\[GreaterEqual]", 
+    "1"}], ",", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        RowBox[{
+         FractionBox["1", "2"], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"-", "a0"}], "+", "b0"}], ")"}]}]}], ")"}], " ", "u1"}], 
+     "+", "u2"}], "\[GreaterEqual]", "1"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.665805661554801*^9, 3.665805681582969*^9}, 
+   3.6658060996531606`*^9, 3.665807498072049*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"u1", "\[GreaterEqual]", "0"}], ",", 
+   RowBox[{"u2", "\[GreaterEqual]", "0"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.665805661554801*^9, 3.665805681582969*^9}, 
+   3.6658060996531606`*^9, 3.665807498078066*^9}]
+}, Open  ]],
+
+Cell["\<\
+Ukaz LinearProgramming deluje samo za konkretne vrednosti. Re\[SHacek]itev \
+poi\[SHacek]\[CHacek]emo z ukazom Minimize.\
+\>", "Text",
+ CellChangeTimes->{{3.665807766448517*^9, 3.6658078399355497`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"inv\[Omega]", ",", "slvu"}], "}"}], "=", 
+  RowBox[{"Simplify", "[", 
+   RowBox[{
+    RowBox[{"Minimize", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"u", ".", "c"}], ",", 
+        RowBox[{"Thread", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Transpose", "[", 
+            RowBox[{"m", "+", "e"}], "]"}], ".", "u"}], "\[GreaterEqual]", 
+          " ", "b"}], "]"}], ",", 
+        RowBox[{"Thread", "[", 
+         RowBox[{"u", "\[GreaterEqual]", " ", "0"}], "]"}]}], "}"}], ",", 
+      "u"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"0", "<", "a0"}], ",", 
+      RowBox[{"0", "<", "b0"}]}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.665805556309555*^9, 3.6658056450065174`*^9}, {
+  3.665805775629322*^9, 3.665805776337505*^9}, {3.6658061046674747`*^9, 
+  3.6658061085864887`*^9}, {3.6658062741573367`*^9, 3.6658062742993736`*^9}, {
+  3.665807517951214*^9, 3.665807521896244*^9}, {3.6658079036280336`*^9, 
+  3.6658079275002112`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   TagBox[GridBox[{
+      {"\[Piecewise]", GridBox[{
+         {"1", 
+          RowBox[{"a0", "\[GreaterEqual]", "b0"}]},
+         {
+          FractionBox[
+           RowBox[{"a0", "+", "b0"}], 
+           RowBox[{"a0", "-", 
+            SuperscriptBox["a0", "2"], "+", "b0", "+", 
+            RowBox[{"a0", " ", "b0"}]}]], 
+          RowBox[{"a0", "<", "b0"}]},
+         {"\[Infinity]", 
+          TagBox["True",
+           "PiecewiseDefault",
+           AutoDelete->True]}
+        },
+        AllowedDimensions->{2, Automatic},
+        Editable->True,
+        GridBoxAlignment->{
+         "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}},
+           "RowsIndexed" -> {}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.84]}, 
+            Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}, "RowsIndexed" -> {}},
+        Selectable->True]}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+       "RowsIndexed" -> {}},
+     GridBoxItemSize->{
+      "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+       "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.35]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    "Piecewise",
+    DeleteWithContents->True,
+    Editable->False,
+    SelectWithContents->True,
+    Selectable->False], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"u1", "\[Rule]", 
+      TagBox[GridBox[{
+         {"\[Piecewise]", GridBox[{
+            {
+             FractionBox["1", "2"], 
+             RowBox[{"a0", "\[Equal]", "b0"}]},
+            {
+             FractionBox[
+              RowBox[{"2", " ", "a0"}], 
+              RowBox[{"a0", "-", 
+               SuperscriptBox["a0", "2"], "+", "b0", "+", 
+               RowBox[{"a0", " ", "b0"}]}]], 
+             RowBox[{"a0", "<", "b0"}]},
+            {"0", 
+             TagBox["True",
+              "PiecewiseDefault",
+              AutoDelete->True]}
+           },
+           AllowedDimensions->{2, Automatic},
+           Editable->True,
+           
+           GridBoxAlignment->{
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+           
+           GridBoxItemSize->{
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}},
+           GridBoxSpacings->{"Columns" -> {
+               Offset[0.27999999999999997`], {
+                Offset[0.84]}, 
+               Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+               Offset[0.2], {
+                Offset[0.4]}, 
+               Offset[0.2]}, "RowsIndexed" -> {}},
+           Selectable->True]}
+        },
+        GridBoxAlignment->{
+         "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}},
+           "RowsIndexed" -> {}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.35]}, 
+            Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}, "RowsIndexed" -> {}}],
+       "Piecewise",
+       DeleteWithContents->True,
+       Editable->False,
+       SelectWithContents->True,
+       Selectable->False]}], ",", 
+     RowBox[{"u2", "\[Rule]", 
+      TagBox[GridBox[{
+         {"\[Piecewise]", GridBox[{
+            {"1", 
+             RowBox[{"a0", ">", "b0"}]},
+            {
+             RowBox[{
+              FractionBox["1", "4"], " ", 
+              RowBox[{"(", 
+               RowBox[{"2", "+", "a0", "-", "b0"}], ")"}]}], 
+             RowBox[{"a0", "\[Equal]", "b0"}]},
+            {
+             RowBox[{"-", 
+              FractionBox[
+               RowBox[{"a0", "-", "b0"}], 
+               RowBox[{"a0", "-", 
+                SuperscriptBox["a0", "2"], "+", "b0", "+", 
+                RowBox[{"a0", " ", "b0"}]}]]}], 
+             RowBox[{"a0", "<", "b0"}]},
+            {"0", 
+             TagBox["True",
+              "PiecewiseDefault",
+              AutoDelete->True]}
+           },
+           AllowedDimensions->{2, Automatic},
+           Editable->True,
+           
+           GridBoxAlignment->{
+            "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+           
+           GridBoxItemSize->{
+            "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
+             "Rows" -> {{1.}}, "RowsIndexed" -> {}},
+           GridBoxSpacings->{"Columns" -> {
+               Offset[0.27999999999999997`], {
+                Offset[0.84]}, 
+               Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+               Offset[0.2], {
+                Offset[0.4]}, 
+               Offset[0.2]}, "RowsIndexed" -> {}},
+           Selectable->True]}
+        },
+        GridBoxAlignment->{
+         "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}},
+           "RowsIndexed" -> {}},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.35]}, 
+            Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}, "RowsIndexed" -> {}}],
+       "Piecewise",
+       DeleteWithContents->True,
+       Editable->False,
+       SelectWithContents->True,
+       Selectable->False]}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6658056458627214`*^9, 3.6658057770366693`*^9, 3.6658058168669767`*^9, 
+   3.6658061162464423`*^9, 3.6658062751405745`*^9, {3.665807513424028*^9, 
+   3.665807527322633*^9}, 3.6658075709919205`*^9, 3.665807933036632*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Primer ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"a0", "\[Equal]", " ", "b0"}], TraditionalForm]],
+  FormatType->"TraditionalForm"]
+}], "Subsubsection",
+ CellChangeTimes->{{3.6658083009958563`*^9, 3.6658083235746856`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Simplify", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"inv\[Omega]", ",", "slvu"}], "}"}], ",", 
+   RowBox[{"a0", "\[Equal]", " ", "b0"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6658083518049903`*^9, 3.665808371528124*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"u1", "\[Rule]", 
+      FractionBox["1", "2"]}], ",", 
+     RowBox[{"u2", "\[Rule]", 
+      FractionBox["1", "2"]}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.6658083722012796`*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Vrednost igre je ni\[CHacek], optimalna strategija je ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RowBox[{
+     FractionBox["1", "2"], ",", 
+     FractionBox["1", "2"]}], "}"}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.6658083879043484`*^9, 3.6658084416752768`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Primer ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"a0", ">", " ", "b0"}], TraditionalForm]],
+  FormatType->"TraditionalForm"]
+}], "Subsubsection",
+ CellChangeTimes->{{3.6658083009958563`*^9, 3.6658083235746856`*^9}, {
+  3.6658084651053405`*^9, 3.6658084663646674`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Simplify", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"inv\[Omega]", ",", "slvu"}], "}"}], ",", 
+   RowBox[{"a0", ">", " ", "b0"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6658083518049903`*^9, 3.665808371528124*^9}, {
+  3.6658084697675514`*^9, 3.665808470222657*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"u1", "\[Rule]", "0"}], ",", 
+     RowBox[{"u2", "\[Rule]", "1"}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.6658083722012796`*^9, 3.665808471335923*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "Vrednost igre je ni\[CHacek], optimalna strategija je ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RowBox[{"0", ",", "1"}], "}"}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ". Prvi igralec vsaki\[CHacek] blefira."
+}], "Text",
+ CellChangeTimes->{{3.6658083879043484`*^9, 3.6658084416752768`*^9}, {
+  3.6658084816616244`*^9, 3.665808507994439*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Primer ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"a0", "<", " ", "b0"}], TraditionalForm]],
+  FormatType->"TraditionalForm"]
+}], "Subsubsection",
+ CellChangeTimes->{{3.6658083009958563`*^9, 3.6658083235746856`*^9}, {
+  3.6658084651053405`*^9, 3.6658084663646674`*^9}, {3.6658085172898455`*^9, 
+  3.6658085200735655`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"inv\[Omega]0", ",", "slvu0"}], "}"}], "=", 
+  RowBox[{"Simplify", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"inv\[Omega]", ",", "slvu"}], "}"}], ",", 
+    RowBox[{"a0", "<", " ", "b0"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6658083518049903`*^9, 3.665808371528124*^9}, {
+  3.6658084697675514`*^9, 3.665808470222657*^9}, {3.6658085248697805`*^9, 
+  3.6658085497502456`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   FractionBox[
+    RowBox[{"a0", "+", "b0"}], 
+    RowBox[{"a0", "-", 
+     SuperscriptBox["a0", "2"], "+", "b0", "+", 
+     RowBox[{"a0", " ", "b0"}]}]], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"u1", "\[Rule]", 
+      FractionBox[
+       RowBox[{"2", " ", "a0"}], 
+       RowBox[{"a0", "-", 
+        SuperscriptBox["a0", "2"], "+", "b0", "+", 
+        RowBox[{"a0", " ", "b0"}]}]]}], ",", 
+     RowBox[{"u2", "\[Rule]", 
+      RowBox[{"-", 
+       FractionBox[
+        RowBox[{"a0", "-", "b0"}], 
+        RowBox[{"a0", "-", 
+         SuperscriptBox["a0", "2"], "+", "b0", "+", 
+         RowBox[{"a0", " ", "b0"}]}]]}]}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6658083722012796`*^9, 3.665808471335923*^9, {3.6658085260020704`*^9, 
+   3.6658085503193765`*^9}}]
+}, Open  ]],
+
+Cell["Optimalna strategija je", "Text",
+ CellChangeTimes->{{3.665808581079342*^9, 3.665808586240689*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"p", " ", "=", " ", 
+  RowBox[{"Simplify", "[", " ", 
+   RowBox[{
+    FractionBox["u", "inv\[Omega]0"], "/.", "slvu0"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.665806469350852*^9, 3.665806480575757*^9}, {
+  3.6658085894245057`*^9, 3.665808595575096*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   FractionBox[
+    RowBox[{"2", " ", "a0"}], 
+    RowBox[{"a0", "+", "b0"}]], ",", 
+   FractionBox[
+    RowBox[{
+     RowBox[{"-", "a0"}], "+", "b0"}], 
+    RowBox[{"a0", "+", "b0"}]]}], "}"}]], "Output",
+ CellChangeTimes->{3.665808596294262*^9}]
+}, Open  ]],
+
+Cell["Zaslu\[ZHacek]ek prvega igralca je ", "Text",
+ CellChangeTimes->{{3.6658086084103994`*^9, 3.6658086269082136`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[Omega]", "=", 
+  RowBox[{"Simplify", "[", 
+   RowBox[{
+    FractionBox["1", "inv\[Omega]0"], "-", "1"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.6658058830461063`*^9, 3.6658059033513756`*^9}, {
+  3.665806237681897*^9, 3.6658062386331434`*^9}, {3.665806417673478*^9, 
+  3.6658064179685545`*^9}, {3.6658086308042173`*^9, 3.665808632532669*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"a0", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", "a0"}], "+", "b0"}], ")"}]}], 
+  RowBox[{"a0", "+", "b0"}]]], "Output",
+ CellChangeTimes->{3.6658086332888737`*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1517, 1157},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"10.3 for Microsoft Windows (64-bit) (October 9, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 97, 1, 101, "Title"],
+Cell[680, 25, 833, 12, 49, "Text"],
+Cell[1516, 39, 321, 6, 30, "Text"],
+Cell[1840, 47, 127, 1, 30, "Text"],
+Cell[CellGroupData[{
+Cell[1992, 52, 457, 14, 46, "Input"],
+Cell[2452, 68, 814, 24, 66, "Output"]
+}, Open  ]],
+Cell[3281, 95, 483, 14, 72, "Input"],
+Cell[CellGroupData[{
+Cell[3789, 113, 301, 9, 31, "Input"],
+Cell[4093, 124, 649, 18, 56, "Output"]
+}, Open  ]],
+Cell[4757, 145, 184, 4, 30, "Text"],
+Cell[CellGroupData[{
+Cell[4966, 153, 418, 10, 52, "Input"],
+Cell[5387, 165, 640, 21, 47, "Output"],
+Cell[6030, 188, 267, 6, 31, "Output"]
+}, Open  ]],
+Cell[6312, 197, 212, 4, 30, "Text"],
+Cell[CellGroupData[{
+Cell[6549, 205, 1057, 28, 31, "Input"],
+Cell[7609, 235, 6483, 175, 94, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14129, 415, 238, 7, 39, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[14392, 426, 252, 6, 31, "Input"],
+Cell[14647, 434, 282, 9, 46, "Output"]
+}, Open  ]],
+Cell[14944, 446, 341, 11, 43, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15322, 462, 284, 8, 39, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[15631, 474, 296, 7, 31, "Input"],
+Cell[15930, 483, 254, 7, 31, "Output"]
+}, Open  ]],
+Cell[16199, 493, 381, 10, 30, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16617, 508, 337, 9, 39, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[16979, 521, 438, 11, 31, "Input"],
+Cell[17420, 534, 823, 25, 48, "Output"]
+}, Open  ]],
+Cell[18258, 562, 105, 1, 30, "Text"],
+Cell[CellGroupData[{
+Cell[18388, 567, 279, 6, 44, "Input"],
+Cell[18670, 575, 287, 10, 46, "Output"]
+}, Open  ]],
+Cell[18972, 588, 121, 1, 30, "Text"],
+Cell[CellGroupData[{
+Cell[19118, 593, 369, 7, 46, "Input"],
+Cell[19490, 602, 213, 7, 46, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
