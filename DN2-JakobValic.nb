@@ -1,0 +1,142 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4828,        132]
+NotebookOptionsPosition[      4103,        112]
+NotebookOutlinePosition[      4473,        128]
+CellTagsIndexPosition[      4430,        125]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["2. doma\[CHacek]a naloga: najmanj\[SHacek]e \[SHacek]etevilo delavcev", \
+"Text",
+ CellChangeTimes->{{3.731348415223147*^9, 3.7313484369163876`*^9}, {
+  3.731348966621685*^9, 
+  3.731348971533966*^9}},ExpressionUUID->"ad100f58-5d99-4d46-ac69-\
+36e54b45430f"],
+
+Cell["\<\
+Premislek je slede\[CHacek]: 
+Naj bo x1 \[SHacek]tevilo delavcev, ki za\[CHacek]nejo delati v ponedeljek, \
+x2 \[SHacek]tevilo delavcev, ki za\[CHacek]nejo delati v torek, itd. \
+Kriterijska funkcija je vsota vseh delavcev, ki za\[CHacek]nejo delati na \
+razli\[CHacek]ne dneve v tednu.
+Pogoje dobimo tako: v ponedeljek delajo vsi delavci, razen tistih, ki so delo \
+za\[CHacek]eli v torek ali sredo. Zato se\[SHacek]tejemo vse delavce, razen \
+slednjih.\
+\>", "Text",
+ CellChangeTimes->{{3.7313489482566347`*^9, 
+  3.731349106142665*^9}},ExpressionUUID->"c47e9e52-eba4-405a-9627-\
+1f29f56537da"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Minimize", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+     "x1", "+", "x2", "+", "x3", "+", "x4", "+", "x5", "+", "x6", "+", "x7"}],
+      ",", " ", 
+     RowBox[{"x1", ">", "0"}], ",", 
+     RowBox[{"x2", ">", "0"}], ",", 
+     RowBox[{"x3", ">", "0"}], ",", 
+     RowBox[{"x4", ">", "0"}], ",", 
+     RowBox[{"x5", ">", "0"}], ",", 
+     RowBox[{"x6", ">", "0"}], ",", 
+     RowBox[{"x7", ">", "0"}], ",", " ", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"x1", "+", "x4", "+", "x5", "+", "x6", "+", "x7"}], 
+      "\[GreaterEqual]", "14"}], ",", 
+     RowBox[{
+      RowBox[{"x1", "+", "x2", "+", "x5", "+", "x6", "+", "x7"}], 
+      "\[GreaterEqual]", "13"}], ",", 
+     RowBox[{
+      RowBox[{"x1", "+", "x2", "+", "x3", "+", "x6", "+", "x7"}], 
+      "\[GreaterEqual]", "15"}], ",", 
+     RowBox[{
+      RowBox[{"x1", "+", "x2", "+", "x3", "+", "x4", "+", "x7"}], 
+      "\[GreaterEqual]", "16"}], ",", 
+     RowBox[{
+      RowBox[{"x1", "+", "x2", "+", "x3", "+", "x4", "+", "x5"}], 
+      "\[GreaterEqual]", "19"}], ",", 
+     RowBox[{
+      RowBox[{"x2", "+", "x3", "+", "x4", "+", "x5", "+", "x6"}], 
+      "\[GreaterEqual]", "18"}], ",", 
+     RowBox[{
+      RowBox[{"x3", "+", "x4", "+", "x5", "+", "x6", "+", "x7"}], 
+      "\[GreaterEqual]", "11"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "x1", ",", "x2", ",", "x3", ",", "x4", ",", "x5", ",", "x6", ",", "x7"}], 
+    "}"}], ",", "Integers"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7313484395065355`*^9, 3.7313484702262926`*^9}, {
+  3.731348522260269*^9, 3.7313487089219456`*^9}, {3.731348744435977*^9, 
+  3.731348935975932*^9}, {3.7313491108169327`*^9, 3.731349113620093*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"9212f043-cc64-4c32-9a71-8790305fbc98"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"23", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"x1", "\[Rule]", "4"}], ",", 
+     RowBox[{"x2", "\[Rule]", "8"}], ",", 
+     RowBox[{"x3", "\[Rule]", "1"}], ",", 
+     RowBox[{"x4", "\[Rule]", "2"}], ",", 
+     RowBox[{"x5", "\[Rule]", "4"}], ",", 
+     RowBox[{"x6", "\[Rule]", "3"}], ",", 
+     RowBox[{"x7", "\[Rule]", "1"}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.731348941446245*^9, 3.7313491163102465`*^9},
+ CellLabel->"Out[3]=",ExpressionUUID->"9e3c2fb3-e904-4b83-b1da-1efd3a238529"]
+}, Open  ]],
+
+Cell["\<\
+Minimalno rabimo 23 delavcev. 4 za\[CHacek]nejo delati v ponedeljek, 8 jih za\
+\[CHacek]ne delati v torek, ..., 1 pa za\[CHacek]ne delati v nedeljo.\
+\>", "Text",
+ CellChangeTimes->{{3.731349122699612*^9, 
+  3.731349158453657*^9}},ExpressionUUID->"eea59a4c-c952-4d5b-9fcc-\
+130081ef94ae"]
+},
+WindowSize->{942, 962},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+Magnification:>1.2 Inherited,
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 264, 5, 41, "Text",ExpressionUUID->"ad100f58-5d99-4d46-ac69-36e54b45430f"],
+Cell[825, 27, 606, 12, 148, "Text",ExpressionUUID->"c47e9e52-eba4-405a-9627-1f29f56537da"],
+Cell[CellGroupData[{
+Cell[1456, 43, 1779, 43, 108, "Input",ExpressionUUID->"9212f043-cc64-4c32-9a71-8790305fbc98"],
+Cell[3238, 88, 548, 13, 39, "Output",ExpressionUUID->"9e3c2fb3-e904-4b83-b1da-1efd3a238529"]
+}, Open  ]],
+Cell[3801, 104, 298, 6, 68, "Text",ExpressionUUID->"eea59a4c-c952-4d5b-9fcc-130081ef94ae"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
