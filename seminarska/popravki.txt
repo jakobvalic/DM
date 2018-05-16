@@ -1,0 +1,17 @@
+2) Koliko dni lahko oskrbujemo trgovine? Kdaj prodaja preseže dobavo?
+
+4c) Strošek za dva poltovornjaka in k = {7, 5, 7} je veèji kot za k = {6, 5, 8}. Poskusite z manjšim številom tovornjakov.
+
+5) Za 100 dni obstaja tudi rešitev z manjšim številom tovornjakov. Kateri tovornjak se je pokvaril? Èe se ne motim, raèunate primer z najmanjšo škodo.
+
+6) Kako zapora ceste vpliva dolgoroèno?
+
+7) Omejitve skladišè morate upoštevati pri minimizaciji. Trenutna zaloga + pripeljano blago - prodaja ne sme preseèi kapacitete.
+
+
+
+ad 2) Spremenil sem funkcijo, da vraèa število dni, za katere lahko zadostimo oskrbo trgovin. Ko trgovine veè ne moremo oskrbeti, rezultat klica funkcije ni veè število, temveè sporoèilo o napaki. Tedaj se zanka izraèuna prekine. 
+ad 4c) Najugodnejši razvoz obstaja za 16 tovornjakov, razporejenih {5, 5, 6} ali {5, 6, 5}.
+ad 5) Za 100 dni obstaja rešitev s k = {5, 6, 5} tovornjaki + 2 tovornjaka. Deluje celo rešitev s k = {5, 5, 5} + 2 poltovornjaka, èe dopušèamo, da se vsak dan lahko pokvari tovornjak v drugem skladišèu.
+ad 6) Zaprtje ceste, po kateri ne razvažamo, tudi na skali 100-tih dni ne poveèa stroškov razvoza. Zaprtje ceste, po kateri poteka najugodnejši razvoz in za katero ni ekvivalentnega nadomestila, pridoda k stroškom razvoza, poveèa jih kar za 18%. Kot prièakovano.
+ad 7) Èe omejitve priroènih skladišè niso stroge, npr. omejitveSkladisc = {10, 10, 10, 10, 10}, to ne vpliva na razvoz na optimalni razvoz. Stroge omejitve poveèajo optimalni razvoz, npr. omejitveSkladisc = {1, 1, 1, 1, 2} ga poveèajo za 9%. 
